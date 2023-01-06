@@ -1,62 +1,40 @@
 <template>
-  <v-container>
-  <v-col
-    cols="12"
-  >
-    <v-text-field
-      v-model="campoInput"
-      solo
-      label="Nome da tarefa"
-      clearable
-      @keyup.enter="handleAddTarefa"
-    ></v-text-field>
-  </v-col>
+  <div>
+    <v-col cols="12">
+      <v-text-field
+        v-model="campoInput"
+        label="Nome da Tarefa"
+        variant="outlined"
+        @keyup.enter="handleAddTarefa"
+      ></v-text-field>
+    </v-col>
 
-  <v-list
-    flat
-    subheader>
-
-    <v-list-item-group
-      multiple
-      active-class="">
-
-      <div class="tarefa" v-for="tarefa, index in $store.state.tarefas" :key="index">
-        <Tarefa :tarefa="tarefa"/>
+    <v-list select-strategy="multiple">
+      <v-list-subheader>General</v-list-subheader>
+      <div v-for="(tarefa, index) in $store.state.tarefas" :key="index">
+        <Tarefa :tarefa="tarefa" />
       </div>
-
-    </v-list-item-group>
-    
-  </v-list>
-  </v-container>
+    </v-list>
+  </div>
 </template>
 
 <script>
-/* eslint-disable */
-import Tarefa from '../components/tarefas/Tarefa.vue';
-
-export default ({
-  name: 'TarefaView',
-  components: {
-    Tarefa,
-  },
-  data(){
+import Tarefa from "@/components/tarefas/Tarefa.vue";
+export default {
+  components: { Tarefa },
+  data() {
     return {
-      campoInput: null  
+      campoInput: null,
     }
   },
   methods: {
     handleAddTarefa(){
         this.$store.commit('adicionaTarefa', this.campoInput)
-        this.campoInput = null
+        this.campoInput = ''
       }
     }
   }
-);
 </script>
 
-<style scoped>
-.tarefa {
-  display: flex;
-  justify-content: space-between;
-}
+<style>
 </style>
