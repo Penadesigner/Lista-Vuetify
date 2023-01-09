@@ -7,6 +7,16 @@
       theme="dark"
       permanent
     >
+      <v-img gradient="to top right, rgba(103,52,188,1), rgba(128,208,199,.8)"
+      class="pt-5 text-center">
+      <v-avatar size="100" class="mb-10 mt-10">
+      <v-img
+        src="./assets/logo.svg"
+        alt="Logo"
+      ></v-img>
+    </v-avatar>
+      </v-img>
+
       <v-list>
         <v-list-item v-for="item in items" :key="item.id" :to="item.to">
         <v-icon>{{item.icon}}</v-icon>
@@ -22,7 +32,9 @@
     <!-- CABECALHO -->
       <v-app-bar
         app
-        color="teal-darken-4"
+        dark
+        height="100"
+        color="red darken-4"
         image="https://picsum.photos/1920/1080?random"
       >
         <template v-slot:image>
@@ -35,7 +47,9 @@
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         </template>
 
-        <v-app-bar-title>Title</v-app-bar-title>
+        <v-app-bar-title class="mt-5">
+            <InputTarefas/>
+        </v-app-bar-title>
 
         <v-spacer></v-spacer>
 
@@ -62,7 +76,9 @@
 </template>
 
 <script>
+import InputTarefas from './components/tarefas/InputTarefas.vue';
 export default {
+  components: { InputTarefas },
   data: () => ({ 
     drawer: null,
     items: [
@@ -77,12 +93,9 @@ export default {
 
 
 <style>
-#corpo .v-navigation-drawer__content {
-  box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
-    rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
-    rgb(0 0 0 / 9%) 0px -3px 5px;
+.v-btn--icon .v-icon {
+  color: #6734bc !important;
 }
-
 .v-list-item__content {
   display: flex;
   align-items: center;

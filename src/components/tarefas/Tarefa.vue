@@ -13,26 +13,22 @@
 
       <v-list-item-title
         :class="{ 'text-decoration-line-through': tarefaStatus }"
-        >{{ tarefa.titulo }}</v-list-item-title
-      >
-        <template v-slot:append>
-          <v-btn
-            color="red-lighten-1"
-            icon="mdi-trash-can"
-            variant="text"
-            @click.stop="handleRemoveTarefa(tarefa.id)"
-          ></v-btn>
-        </template>
+        >{{ tarefa.titulo }}
+      </v-list-item-title>
 
+      <template v-slot:append >
+        <TarefaMenu :tarefa="tarefa" />
+      </template>
     </v-list-item>
-
     <v-divider></v-divider>
   </div>
 </template>
 
 <script>
+import TarefaMenu from "./TarefaMenu.vue";
 /* eslint-disable */
 export default {
+  components: { TarefaMenu },
   name: "Tarefa",
   data() {
     return {
@@ -45,9 +41,9 @@ export default {
       this.tarefa.concluido = !this.tarefa.concluido;
       this.tarefaStatus = !this.tarefaStatus;
     },
-    handleRemoveTarefa(id){
-        this.$store.commit('removeTarefa',id)
-    }
+    handleRemoveTarefa(id) {
+      this.$store.commit("removeTarefa", id);
+    },
   },
 };
 </script>

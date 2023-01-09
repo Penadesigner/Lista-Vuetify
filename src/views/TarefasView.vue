@@ -1,39 +1,32 @@
 <template>
   <div>
-    <v-col cols="12">
-      <v-text-field
-        v-model="campoInput"
-        label="Nome da Tarefa"
-        variant="outlined"
-        @keyup.enter="handleAddTarefa"
-      ></v-text-field>
-    </v-col>
+    <ListaTarefas/>
 
-    <v-list select-strategy="multiple">
-      <v-list-subheader>General</v-list-subheader>
-      <div v-for="(tarefa, index) in $store.state.tarefas" :key="index">
-        <Tarefa :tarefa="tarefa" />
-      </div>
-    </v-list>
+    <div class="animate__animated animate_bounceInUp" v-if="!$store.state.tarefas.length">
+      <center>
+        <v-icon
+        size="100"
+        color="primary">
+          mdi-check
+        </v-icon>
+        <div class="primary--text">
+          Sem Tarefas no momento
+        </div>
+      </center>
+    </div>
+
   </div>
 </template>
 
 <script>
-import Tarefa from "@/components/tarefas/Tarefa.vue";
+import ListaTarefas from "@/components/tarefas/ListaTarefas.vue";
+
 export default {
-  components: { Tarefa },
-  data() {
-    return {
-      campoInput: null,
-    }
+  components: { ListaTarefas },
+  created() {
+    this.$store.commit("buscarTarefa");
   },
-  methods: {
-    handleAddTarefa(){
-        this.$store.commit('adicionaTarefa', this.campoInput)
-        this.campoInput = ''
-      }
-    }
-  }
+};
 </script>
 
 <style>
