@@ -1,3 +1,5 @@
+# Projeto criado em Vue com Vuetify, salvando dados no LocalBase.
+
 # curso_vue_lista_tarefa_1
 
 ## Project setup
